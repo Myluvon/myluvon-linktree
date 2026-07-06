@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYLUVON — Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111010;
+    --paper:#F6F1E7;
+    --charcoal:#141312;
+    --card:#1C1A18;
+    --card-border:#2C2925;
+    --brass:#C6A15B;
+    --brass-dim:#8A7042;
+    --text-hi:#F3EEE3;
+    --text-lo:#B9B2A4;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--charcoal);
+    color:var(--text-hi);
+    font-family:'Manrope',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    background:
+      radial-gradient(circle at 50% -10%, rgba(198,161,91,0.10), transparent 55%),
+      var(--charcoal);
+  }
+
+  .page{
+    width:100%;
+    max-width:520px;
+    padding:48px 20px 60px;
+    position:relative;
+  }
+
+  /* top bar */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:36px;
+  }
+  .topbar .mark{
+    width:38px;height:38px;
+    border:1px solid var(--card-border);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-lo);
+    font-size:14px;
+  }
+  .topbar .actions{ display:flex; gap:10px; }
+  .pill-btn{
+    border:1px solid var(--card-border);
+    background:transparent;
+    color:var(--text-hi);
+    padding:9px 18px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.02em;
+    cursor:pointer;
+    font-family:'Manrope',sans-serif;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .pill-btn:hover{ border-color:var(--brass); color:var(--brass); }
+  .icon-btn{
+    width:38px;height:38px;
+    border:1px solid var(--card-border);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-lo);
+    background:transparent;
+    cursor:pointer;
+  }
+  .icon-btn:hover{ border-color:var(--brass); color:var(--brass); }
+
+  /* hero / emblem */
+  .hero{
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .emblem-wrap{
+    width:132px;height:132px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    padding:4px;
+    background:conic-gradient(from 180deg, var(--brass-dim), var(--brass), var(--brass-dim));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .emblem{
+    width:100%;height:100%;
+    border-radius:50%;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    letter-spacing:.14em;
+    color:var(--brass);
+    text-transform:uppercase;
+    border:1px solid rgba(198,161,91,0.35);
+    overflow:hidden;
+  }
+  .emblem img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+
+  .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:30px;
+    letter-spacing:.01em;
+    margin:0 0 6px;
+    color:var(--text-hi);
+  }
+  .brand span{ color:var(--brass); }
+
+  .tagline{
+    font-size:14px;
+    color:var(--text-lo);
+    margin:0 0 6px;
+    letter-spacing:.02em;
+  }
+
+  .hairline{
+    width:64px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--brass), transparent);
+    margin:20px auto 28px;
+  }
+
+  /* link list */
+  .links{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .link-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:16px 18px;
+    text-decoration:none;
+    color:var(--text-hi);
+    position:relative;
+    transition:border-color .2s ease, transform .15s ease, background .2s ease;
+  }
+  .link-card:hover{
+    border-color:var(--brass);
+    transform:translateY(-1px);
+    background:#201D19;
+  }
+  .link-card.featured{
+    border-color:rgba(198,161,91,0.45);
+    background:linear-gradient(180deg, rgba(198,161,91,0.08), rgba(198,161,91,0.02));
+  }
+
+  .link-thumb{
+    width:40px;height:40px;
+    border-radius:10px;
+    flex-shrink:0;
+    background:#2A2723;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    border:1px solid var(--card-border);
+  }
+  .link-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .link-thumb svg{ width:18px; height:18px; stroke:var(--brass); }
+
+  .link-text{
+    flex:1;
+    min-width:0;
+  }
+  .link-title{
+    font-size:15px;
+    font-weight:600;
+    line-height:1.35;
+  }
+  .link-sub{
+    font-size:12.5px;
+    color:var(--text-lo);
+    margin-top:2px;
+  }
+
+  .chevron{
+    color:var(--text-lo);
+    font-size:16px;
+    flex-shrink:0;
+  }
+
+  .badge{
+    position:absolute;
+    top:-8px;
+    right:14px;
+    background:var(--brass);
+    color:var(--ink);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:999px;
+  }
+
+  .group-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--brass-dim);
+    margin:30px 0 12px 4px;
+  }
+
+  /* product cards */
+  .product-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:12px;
+    text-decoration:none;
+    color:var(--text-hi);
+    transition:border-color .2s ease, transform .15s ease, background .2s ease;
+  }
+  .product-card:hover{
+    border-color:var(--brass);
+    transform:translateY(-1px);
+    background:#201D19;
+  }
+  .product-thumb{
+    width:64px;height:64px;
+    border-radius:10px;
+    flex-shrink:0;
+    background:#2A2723;
+    overflow:hidden;
+    border:1px solid var(--card-border);
+  }
+  .product-thumb img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .product-info{
+    flex:1;
+    min-width:0;
+  }
+  .product-name{
+    font-size:14.5px;
+    font-weight:600;
+    line-height:1.3;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .product-price{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-top:4px;
+  }
+  .price-now{
+    font-size:14px;
+    font-weight:700;
+    color:var(--brass);
+  }
+  .price-old{
+    font-size:12px;
+    color:var(--text-lo);
+    text-decoration:line-through;
+  }
+  .buy-btn{
+    flex-shrink:0;
+    border:1px solid var(--brass-dim);
+    color:var(--brass);
+    background:transparent;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.02em;
+    padding:8px 14px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .product-card:hover .buy-btn{
+    background:var(--brass);
+    color:var(--ink);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:44px;
+    font-size:11.5px;
+    color:#6E675B;
+    letter-spacing:.02em;
+  }
+  footer a{ color:#6E675B; text-decoration:none; }
+  footer a:hover{ color:var(--brass); }
+
+  @media (max-width:380px){
+    .brand{ font-size:26px; }
+    .link-card{ padding:14px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="mark">✦</div>
+    <div class="actions">
+      <button class="pill-btn" onclick="window.location.href='https://YOURSTORE.myshopify.com'">Shop now</button>
+      <button class="icon-btn" onclick="navigator.share ? navigator.share({title:'MYLUVON', url:location.href}) : alert('Copy link: ' + location.href)">⇪</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="emblem-wrap">
+      <div class="emblem">
+        <!-- Replace with <img src="your-logo.png" alt="MYLUVON"> -->
+        MV
+      </div>
+    </div>
+    <h1 class="brand">@MYLUVON</h1>
+    <p class="tagline">Premium everyday carry, made for the men who build things.</p>
+    <div class="hairline"></div>
+  </div>
+
+  <div class="links">
+
+    <a class="link-card featured" href="#" target="_blank" rel="noopener">
+      <span class="badge">Mới</span>
+      <div class="link-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">Cửa hàng chính thức</div>
+        <div class="link-sub">Xem toàn bộ bộ sưu tập mới nhất</div>
+      </div>
+      <div class="chevron">›</div>
+    </a>
+
+    <a class="link-card" href="#" target="_blank" rel="noopener">
+      <div class="link-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-8-8"/><path d="M12 4v4l3 3"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">Ưu đãi giới hạn — giảm 15%</div>
+        <div class="link-sub">Dùng mã <strong>MYLUVON15</strong> khi thanh toán</div>
+      </div>
+      <div class="chevron">›</div>
+    </a>
+
+    <a class="link-card" href="#" target="_blank" rel="noopener">
+      <div class="link-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">Bộ sưu tập Best Seller</div>
+        <div class="link-sub">Những sản phẩm được yêu thích nhất</div>
+      </div>
+      <div class="chevron">›</div>
+    </a>
+
+    <div class="group-label">Sản phẩm nổi bật</div>
+
+    <a class="product-card" href="#" target="_blank" rel="noopener">
+      <div class="product-thumb">
+        <img src="san-pham-1.jpg" alt="Ví da nam MYLUVON">
+      </div>
+      <div class="product-info">
+        <div class="product-name">Ví da nam Heritage</div>
+        <div class="product-price">
+          <span class="price-now">690.000₫</span>
+          <span class="price-old">890.000₫</span>
+        </div>
+      </div>
+      <button class="buy-btn">Mua ngay</button>
+    </a>
+
+    <a class="product-card" href="#" target="_blank" rel="noopener">
+      <div class="product-thumb">
+        <img src="san-pham-2.jpg" alt="Móc khóa da MYLUVON">
+      </div>
+      <div class="product-info">
+        <div class="product-name">Móc khóa da bò thật</div>
+        <div class="product-price">
+          <span class="price-now">250.000₫</span>
+        </div>
+      </div>
+      <button class="buy-btn">Mua ngay</button>
+    </a>
+
+    <a class="product-card" href="#" target="_blank" rel="noopener">
+      <div class="product-thumb">
+        <img src="san-pham-3.jpg" alt="Thắt lưng da MYLUVON">
+      </div>
+      <div class="product-info">
+        <div class="product-name">Thắt lưng da Signature</div>
+        <div class="product-price">
+          <span class="price-now">590.000₫</span>
+        </div>
+      </div>
+      <button class="buy-btn">Mua ngay</button>
+    </a>
+
+    <div class="group-label">Theo dõi chúng tôi</div>
+
+    <a class="link-card" href="#" target="_blank" rel="noopener">
+      <div class="link-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">Instagram</div>
+        <div class="link-sub">@myluvon</div>
+      </div>
+      <div class="chevron">›</div>
+    </a>
+
+    <a class="link-card" href="#" target="_blank" rel="noopener">
+      <div class="link-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">YouTube</div>
+        <div class="link-sub">Video đánh giá & hậu trường</div>
+      </div>
+      <div class="chevron">›</div>
+    </a>
+
+    <a class="link-card" href="#" target="_blank" rel="noopener">
+      <div class="link-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">TikTok</div>
+        <div class="link-sub">@myluvon</div>
+      </div>
+      <div class="chevron">›</div>
+    </a>
+
+  </div>
+
+  <footer>
+    © <span id="year"></span> MYLUVON · <a href="#">Chính sách bảo mật</a>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
